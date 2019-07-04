@@ -1,6 +1,7 @@
 package com.zipcodewilmington.arrayutility;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -8,6 +9,7 @@ import org.junit.Test;
  * The purpose of this class is to thoroughly test the method countDuplicatesInMerge()
  */
 public class CountDuplicatesInMergeTest {
+
     @Test
     public void integerTest() {
         // Given

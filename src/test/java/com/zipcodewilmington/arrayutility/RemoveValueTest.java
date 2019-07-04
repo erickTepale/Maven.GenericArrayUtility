@@ -1,6 +1,5 @@
 package com.zipcodewilmington.arrayutility;
-
-import com.zipcodewilmington.UnitTestingUtils;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -8,6 +7,7 @@ import org.junit.Test;
  * The purpose of this class is to thoroughly test the method removeValue()
  */
 public class RemoveValueTest {
+
     @Test
     public void integerTest() {
         // Given
