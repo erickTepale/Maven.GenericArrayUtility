@@ -21,15 +21,9 @@ public class ArrayUtility<T> {
     * */
     public T getMostCommonFromMerge(T[] arr){
         List<T> mergedArr =  Stream.concat(Arrays.stream(arr), Arrays.stream(this.arr)).collect(Collectors.toList());
-
+        Map<T, Integer> map = getMap(mergedArr);
         T value = mergedArr.get(0);
         Integer count = 0;
-        Map<T, Integer> map = new HashMap<>();
-
-        for(T each: mergedArr){
-            Integer val = map.get(each);
-            map.put(each, val == null ? 1 : val + 1);
-        }
 
         for (T e : map.keySet()){
             if(map.get(e) > count){
@@ -40,8 +34,23 @@ public class ArrayUtility<T> {
             return value;
     }
 
+    private Map<T, Integer> getMap(List<T> arr){
+        Map<T, Integer> map = new HashMap<>();
+
+        for(T each: arr){
+            Integer val = map.get(each);
+            map.put(each, val == null ? 1 : val + 1);
+        }
+
+        return map;
+    }
+
     public Integer countDuplicatesInMerge(T[] arr, T val){
-        return null;
+        Map<T, Integer> map = getMap(
+                Stream.concat(Arrays.stream(arr), Arrays.stream(this.arr)).collect(Collectors.toList())
+        );
+
+        return map.get(val);
     }
 
     public Integer getNumberOfOccurrences(T val){
@@ -50,6 +59,17 @@ public class ArrayUtility<T> {
     }
 
     public T[] removeValue(T val){
-        return null;
+
+        List<T>arr = Arrays.stream(this.arr).collect(Collectors.toList());
+        for (int i = 0; i < getNumberOfOccurrences(val); i++) {
+            arr.remove(val);
+        }
+
+        T[] newArr = Arrays.copyOf(this.arr, this.arr.length - getNumberOfOccurrences(val));
+
+        for (int i = 0; i < arr.size(); i++) {
+             newArr[i] = arr.get(i);
+        }
+        return newArr ;
     }
 }
